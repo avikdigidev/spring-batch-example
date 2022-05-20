@@ -45,7 +45,7 @@ public class SpringBatchConfig {
         DelimitedLineTokenizer delimitedLineTokenizer = new DelimitedLineTokenizer();
         delimitedLineTokenizer.setDelimiter(",");
         delimitedLineTokenizer.setStrict(false);
-        delimitedLineTokenizer.setNames("id","name", "time", "duration");
+        delimitedLineTokenizer.setNames("id", "name", "time", "duration");
         BeanWrapperFieldSetMapper<ActivityTracker> fieldSetMapper = new BeanWrapperFieldSetMapper<>();
         fieldSetMapper.setTargetType(ActivityTracker.class);
         lineMapper.setLineTokenizer(delimitedLineTokenizer);
@@ -81,8 +81,9 @@ public class SpringBatchConfig {
         return jobBuilderFactory.get("import-csv").flow(step1())
                 .end().build();
     }
-@Bean
-    public TaskExecutor taskExecutor(){
+
+    @Bean
+    public TaskExecutor taskExecutor() {
         SimpleAsyncTaskExecutor asyncTaskExecutor = new SimpleAsyncTaskExecutor();
         asyncTaskExecutor.setConcurrencyLimit(20);
         return asyncTaskExecutor;
